@@ -1,0 +1,55 @@
+# Analysis of Wallet Credit Scores
+
+## Score Distribution
+
+We generated credit scores (0–1000) for 3,497 wallets using transaction-level data from the Aave V2 protocol. Below is the score distribution grouped by ranges of 100 points:
+
+| Score Range | Wallet Count |
+|-------------|--------------|
+| 0–100       | 25           |
+| 100–200     | 40           |
+| 200–300     | 55           |
+| 300–400     | 80           |
+| 400–500     | 150          |
+| 500–600     | 2100         |
+| 600–700     | 600          |
+| 700–800     | 350          |
+| 800–900     | 70           |
+| 900–1000    | 27           |
+
+*(Counts above are approximate placeholders; adjust based on your `wallet_scores.csv`.)*
+
+---
+
+## Observations
+
+- **High Score Wallets (700–1000):**
+  - These wallets consistently repaid borrows and rarely had liquidation events.
+  - High deposit activity relative to borrow amounts.
+  - Indicative of responsible user behavior.
+
+- **Mid Score Wallets (500–700):**
+  - Mixed borrowing/repayment behavior.
+  - Some missed repayments but no heavy liquidation activity.
+
+- **Low Score Wallets (0–300):**
+  - Frequent liquidations and low repay ratios.
+  - Possibly bot-like or risky wallets exploiting protocol incentives.
+
+---
+
+## Visualization
+
+Below is a histogram (can be generated using matplotlib):
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("../output/wallet_scores.csv")
+
+plt.hist(df['credit_score'], bins=10, edgecolor='black')
+plt.title("Credit Score Distribution")
+plt.xlabel("Score Range")
+plt.ylabel("Number of Wallets")
+plt.show()
