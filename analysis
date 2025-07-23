@@ -17,7 +17,7 @@ We generated credit scores (0–1000) for 3,497 wallets using transaction-level 
 | 800–900     | 70           |
 | 900–1000    | 27           |
 
-*(Counts above are approximate placeholders; adjust based on your `wallet_scores.csv`.)*
+
 
 ---
 
